@@ -2,6 +2,7 @@
 
     <string name="app_name">SWAP</string>
     <string name="hello_world">Hello world!</string>
+    <string name="about_app">About</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_post">PostActivity</string>
@@ -10,5 +11,8 @@
     <string name="label1">guess</string>
     <string name="label2">post</string>
     <string name="label3">about</string>
+    <string name="edit_temperature">Temperature</string>
+    <string name="button_send">Send</string>
+    <string name="button_cancel">Cancel</string>
 
 </resources>
