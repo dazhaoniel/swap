@@ -1,19 +1,25 @@
 package com.example.swap;
 
 import android.os.Bundle;
+import android.os.IBinder;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.view.Menu;
 
-public class MainActivity extends LocationActivity {
+public class MainActivity extends Activity {
 
 	public static Context appContext;
-
+	LocationService locationService;
+	Intent serviceIntent;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,24 +33,26 @@ public class MainActivity extends LocationActivity {
 		String label1 = getResources().getString(R.string.label1);
 		Tab tab = actionBar.newTab();
 		tab.setText(label1);
-		TabListener<GuessActivity> tl = new TabListener<GuessActivity>(this, label1, GuessActivity.class);
+		TabListener<GuessFragment> tl = new TabListener<GuessFragment>(this, label1, GuessFragment.class);
 		tab.setTabListener(tl);
 		actionBar.addTab(tab);
 
 		String label2 = getResources().getString(R.string.label2);
 		tab = actionBar.newTab();
 		tab.setText(label2);
-		TabListener<PostActivity> tl2 = new TabListener<PostActivity>(this, label2, PostActivity.class);
+		TabListener<PostFragment> tl2 = new TabListener<PostFragment>(this, label2, PostFragment.class);
 		tab.setTabListener(tl2);
 		actionBar.addTab(tab);
 
 		String label3 = getResources().getString(R.string.label3);
 		tab = actionBar.newTab();
 		tab.setText(label3);
-		TabListener<AboutActivity> tl3 = new TabListener<AboutActivity>(this, label3, AboutActivity.class);
+		TabListener<AboutFragment> tl3 = new TabListener<AboutFragment>(this, label3, AboutFragment.class);
 		tab.setTabListener(tl3);
 		actionBar.addTab(tab);
-
+		
+		serviceIntent = new Intent(this, LocationService.class);
+//		locationService.startService(serviceIntent);
 	}
 
 	private class TabListener<T extends Fragment> implements ActionBar.TabListener {
@@ -93,6 +101,25 @@ public class MainActivity extends LocationActivity {
 		public void onTabReselected(Tab tab, FragmentTransaction ft) {
 			// User selected the already selected tab. Usually do nothing.
 		}
+	}
+	
+	private ServiceConnection serviceConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            locationService = ((LocationService.LocationBinder)service).getService();
+//            updateStatus();
+        }
+
+        public void onServiceDisconnected(ComponentName className) {
+            locationService = null;
+        }
+    };
+    
+	public void onResume() {
+		super.onResume();
+		// Starting the service 
+		locationService.startService(serviceIntent);
+		// Bind to the service
+		locationService.bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
 	}
     
 	@Override
