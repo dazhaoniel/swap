@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 	private InputStream is = null;
 	private StringBuilder sb = null;
 
-	TextView statusView;
+//	TextView statusView;
 	private LocationService locationService;
 	private Intent serviceIntent;
 
@@ -53,6 +53,8 @@ public class MainActivity extends Activity {
 	 ************************************************************************/
 	private double latitude;
 	private double longitude;
+	TextView display_temp;
+	TextView display_humid;
 
 	/***********************************************************************/
 
@@ -64,10 +66,10 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		serviceIntent = new Intent(this, LocationService.class);
 
-		statusView = (TextView) findViewById(R.id.status);
-
-		statusView.setText(String.format("Current Location Guess - Latitude: "
-				+ latitude + ", Longitude: " + longitude));
+//		statusView = (TextView) findViewById(R.id.status);
+//
+//		statusView.setText(String.format("Current Location Guess - Latitude: "
+//				+ latitude + ", Longitude: " + longitude));
 		// new GuessTask().execute();
 	}
 
@@ -104,18 +106,18 @@ public class MainActivity extends Activity {
 
 	public void updateUIDisplay(View v) {
 		Location loc = locationService.getLocation();
-		
-		if ( loc == null ) {
+
+		if (loc == null) {
 			// Do nothing
 		} else {
-			statusView = (TextView) findViewById(R.id.status);
-			
+//			statusView = (TextView) findViewById(R.id.status);
+
 			latitude = loc.getLatitude();
 			longitude = loc.getLongitude();
 
-			statusView.setText(String
-					.format("Current Location Guess - Latitude: " + latitude
-							+ ", Longitude: " + longitude));
+//			statusView.setText(String
+//					.format("Current Location Guess - Latitude: " + latitude
+//							+ ", Longitude: " + longitude));
 
 			new GuessTask().execute();
 		}
@@ -226,20 +228,17 @@ public class MainActivity extends Activity {
 
 				Toast.makeText(getBaseContext(), noaa_station[0],
 						Toast.LENGTH_LONG).show();
-				/*****************************************************************
-				 * ** display stuff
-				 * *************************************************
-				 * ***************** //Toast.makeText(getBaseContext(),
-				 * Double.toString(sc_distance[0]) ,Toast.LENGTH_LONG).show();
-				 * Toast.makeText(getBaseContext(), output[0]
-				 * ,Toast.LENGTH_LONG).show();
-				 * /*************************************
-				 * ****************************
-				 */
+				String the_results = "Temperature: " + temp[0]
+						+ " degrees \n Humidity: " + humid[0] + "% \n "
+						+ "Closest Station: " + noaa_station[0] + "\n"
+						+ "Miles from you: " + noaa_distance[0];
 
+				display_temp = (TextView) findViewById(R.id.text1);
+				display_temp.setText(the_results);
+				
 			} catch (JSONException e1) {
 				Toast.makeText(getBaseContext(),
-						"oops...something went wrong :(", Toast.LENGTH_LONG)
+						"Oops...something went wrong :(", Toast.LENGTH_LONG)
 						.show();
 			} catch (ParseException e1) {
 				e1.printStackTrace();
@@ -247,11 +246,5 @@ public class MainActivity extends Activity {
 			}
 
 		}
-
-		/*
-		 * @Override public boolean onCreateOptionsMenu(Menu menu) {
-		 * getMenuInflater().inflate(R.menu.activity_guess, menu); return true;
-		 * }
-		 */
-	} // end guess task
-} // end Activity
+	}
+}
