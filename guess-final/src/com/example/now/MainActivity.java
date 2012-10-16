@@ -65,12 +65,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		serviceIntent = new Intent(this, LocationService.class);
-
 //		statusView = (TextView) findViewById(R.id.status);
-//
-//		statusView.setText(String.format("Current Location Guess - Latitude: "
-//				+ latitude + ", Longitude: " + longitude));
-		// new GuessTask().execute();
 	}
 
 	@Override
@@ -110,14 +105,8 @@ public class MainActivity extends Activity {
 		if (loc == null) {
 			// Do nothing
 		} else {
-//			statusView = (TextView) findViewById(R.id.status);
-
 			latitude = loc.getLatitude();
 			longitude = loc.getLongitude();
-
-//			statusView.setText(String
-//					.format("Current Location Guess - Latitude: " + latitude
-//							+ ", Longitude: " + longitude));
 
 			new GuessTask().execute();
 		}
@@ -145,8 +134,6 @@ public class MainActivity extends Activity {
 						"Error in URL Encoding the POST Parameters: "
 								+ e.toString());
 			}
-
-			// So far so good
 
 			// Making Http Request
 
@@ -217,13 +204,6 @@ public class MainActivity extends Activity {
 					noaa_distance[i] = json_data.getString("noaa_distance");
 					noaa_temp[i] = json_data.getString("noaa_temp");
 					noaa_humid[i] = json_data.getString("noaa_humid");
-					/****************
-					 * ***************************************************
-					 * display stuff, for debugging..
-					 * ***************************
-					 * **************************************
-					 */
-
 				}
 
 				Toast.makeText(getBaseContext(), noaa_station[0],
