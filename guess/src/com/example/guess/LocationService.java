@@ -18,7 +18,6 @@ public class LocationService extends Service implements LocationListener {
     
     private LocationManager manager;
     private Location currentLocation;
-    private boolean locationChanged = false;
     
     /* Service Setup Methods */
     @Override
@@ -30,13 +29,17 @@ public class LocationService extends Service implements LocationListener {
     public void startTracking() {
         if(!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             return;
+         // OR Register the listener with the Location Manager to receive location updates from WiFi
+         //   manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
         }
-        Toast.makeText(this, "Refreshing Location Service...", Toast.LENGTH_SHORT).show();
-        manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, this);
+        Toast.makeText(this, "Determining Current Location...", Toast.LENGTH_LONG).show();
+        
+        // Register the listener with the Location Manager to receive location updates from GPS
+        manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 30000, 0, this);
+
     }
     
     public void stopTracking() {
-//        Toast.makeText(this, "Stopping Location Service", Toast.LENGTH_SHORT).show();
         manager.removeUpdates(this);
     }
     
@@ -65,27 +68,20 @@ public class LocationService extends Service implements LocationListener {
     }
     
     /* LocationListener Methods */
-    @Override
+//    @Override
     public void onLocationChanged(Location location) {
-    	currentLocation = location;
-    	setLocationChanged(true);
+    	this.currentLocation = location;
         Log.i("LocationService", "Adding new location");
+        Log.i("LocationService", currentLocation.getLatitude() + ", " + currentLocation.getLongitude() );
+        Toast.makeText(this, String.format(currentLocation.getLatitude() + ", " + currentLocation.getLongitude()), Toast.LENGTH_LONG).show();
     }
 
-    @Override
+//    @Override
     public void onProviderDisabled(String provider) { }
 
-    @Override
+//    @Override
     public void onProviderEnabled(String provider) { }
 
-    @Override
+//    @Override
     public void onStatusChanged(String provider, int status, Bundle extras) { }
-
-	public boolean isLocationChanged() {
-		return locationChanged;
-	}
-
-	public void setLocationChanged(boolean locationChanged) {
-		this.locationChanged = locationChanged;
-	}
 }

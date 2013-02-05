@@ -11,9 +11,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.widget.Button;
 import android.widget.TextView;
-import android.view.View;
+//import android.view.View;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class LocationServiceClient extends Activity {
     
     Button enableButton, disableButton;
     TextView statusView;
@@ -28,7 +28,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
 
         enableButton = (Button)findViewById(R.id.refresh);
-        enableButton.setOnClickListener(this);
+//        enableButton.setOnClickListener(this);
         statusView = (TextView)findViewById(R.id.status);
         
         serviceIntent = new Intent(this, LocationService.class);
@@ -52,8 +52,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         unbindService(serviceConnection);
     }
     
-    @Override
-    public void onClick(View v) {
+//    @Override
+/*    public void onClick(View v) {
         switch(v.getId()) {
         case R.id.refresh:
             locationService.startTracking();
@@ -62,7 +62,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             break;
         }
         updateStatus();
-    }
+    }*/
     
     private void updateStatus() {
     	myLocation = locationService.getLocation();
@@ -74,11 +74,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ServiceConnection serviceConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className, IBinder service) {
             locationService = ((LocationService.LocationBinder)service).getService();
+            locationService.startTracking();
             updateStatus();
         }
 
         public void onServiceDisconnected(ComponentName className) {
-            locationService = null;
+        	locationService.stopTracking();
+        	locationService = null;
         }
     };
 }
