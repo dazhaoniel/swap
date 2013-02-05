@@ -1,6 +1,42 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/imageGuess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="88dp"
+        android:contentDescription="@string/button_guess"
+        android:onClick="startGuessActivity"
+        android:src="@drawable/guess_activity"
+        android:text="@string/button_guess" />
+
+    <ImageButton
+        android:id="@+id/imagePost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageGuess"
+        android:layout_marginLeft="58dp"
+        android:layout_toRightOf="@+id/imageGuess"
+        android:contentDescription="@string/button_post"
+        android:onClick="startPostActivity"
+        android:src="@drawable/post_activity"
+        android:text="@string/button_post" />
+
+    <ImageButton
+        android:id="@+id/imageAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageGuess"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/button_about"
+        android:onClick="startAboutActivity"
+        android:src="@drawable/about_activity"
+        android:text="@string/button_about" />
+
+</RelativeLayout>
