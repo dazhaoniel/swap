@@ -42,7 +42,7 @@ public class GuessActivity extends Activity {
 	private InputStream is = null;
 	private StringBuilder sb = null;
 
-//	TextView statusView;
+	// TextView statusView;
 	private LocationService locationService;
 	private Intent serviceIntent;
 
@@ -65,7 +65,7 @@ public class GuessActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_guess);
 		serviceIntent = new Intent(this, LocationService.class);
-//		statusView = (TextView) findViewById(R.id.status);
+		// statusView = (TextView) findViewById(R.id.status);
 	}
 
 	@Override
@@ -87,12 +87,14 @@ public class GuessActivity extends Activity {
 	}
 
 	private ServiceConnection serviceConnection = new ServiceConnection() {
+		@Override
 		public void onServiceConnected(ComponentName className, IBinder service) {
 			locationService = ((LocationService.LocationBinder) service)
 					.getService();
 			locationService.startTracking();
 		}
 
+		@Override
 		public void onServiceDisconnected(ComponentName className) {
 			locationService.stopTracking();
 			locationService = null;
@@ -115,6 +117,7 @@ public class GuessActivity extends Activity {
 	private class GuessTask extends AsyncTask<String, String, String> {
 
 		// @Override
+		@Override
 		protected String doInBackground(String... params) {
 			ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 			nameValuePairs.add(new BasicNameValuePair("c_latitude", Double
@@ -206,8 +209,8 @@ public class GuessActivity extends Activity {
 					noaa_humid[i] = json_data.getString("noaa_humid");
 				}
 
-//				Toast.makeText(getBaseContext(), noaa_station[0],
-//						Toast.LENGTH_LONG).show();
+				// Toast.makeText(getBaseContext(), noaa_station[0],
+				// Toast.LENGTH_LONG).show();
 				String the_results = "Temperature: " + temp[0]
 						+ " degrees \n Humidity: " + humid[0] + "% \n "
 						+ "Closest Station: " + noaa_station[0] + "\n"
@@ -215,7 +218,7 @@ public class GuessActivity extends Activity {
 
 				display_temp = (TextView) findViewById(R.id.text1);
 				display_temp.setText(the_results);
-				
+
 			} catch (JSONException e1) {
 				Toast.makeText(getBaseContext(),
 						"Oops...something went wrong :(", Toast.LENGTH_LONG)

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
+
 //import com.example.solazo.R;
 
 public class LocationService extends Service implements LocationListener {
@@ -29,10 +30,13 @@ public class LocationService extends Service implements LocationListener {
 	}
 
 	public void startTracking() {
-		final boolean gpsEnabled = manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-		final boolean networkEnabled = manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-		if (!gpsEnabled && !networkEnabled ) {
-			Toast.makeText(this, "Please enable Location Service to use this app...",
+		final boolean gpsEnabled = manager
+				.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		final boolean networkEnabled = manager
+				.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+		if (!gpsEnabled && !networkEnabled) {
+			Toast.makeText(this,
+					"Please enable Location Service to use this app...",
 					Toast.LENGTH_LONG).show();
 			return;
 		}
@@ -57,7 +61,7 @@ public class LocationService extends Service implements LocationListener {
 			manager.requestLocationUpdates(provider, 30000, 0, this);
 		} else {
 			location = manager.getLastKnownLocation(provider);
-//			location = null;
+			// location = null;
 		}
 		return location;
 	}
@@ -91,6 +95,7 @@ public class LocationService extends Service implements LocationListener {
 	}
 
 	/* LocationListener Methods */
+	@Override
 	public void onLocationChanged(Location location) {
 		this.currentLocation = location;
 		Log.i(LOGTAG, "Adding new location");
@@ -104,12 +109,15 @@ public class LocationService extends Service implements LocationListener {
 				.show();
 	}
 
+	@Override
 	public void onProviderDisabled(String provider) {
 	}
 
+	@Override
 	public void onProviderEnabled(String provider) {
 	}
 
+	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 	}
 
