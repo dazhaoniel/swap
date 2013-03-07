@@ -32,6 +32,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,22 +43,20 @@ public class PostActivity extends Activity {
 	private InputStream is = null;
 	private StringBuilder sb = null;
 
-	// TextView statusView;
 	private LocationService locationService;
 	private Intent serviceIntent;
 
 	private static final String LOGTAG = "PostActivity";
 
-	/***********************************************************************
-	 * here's long and latitude, just set your vars equal to these
-	 ************************************************************************/
 	private double latitude;
 	private double longitude;
-//	TextView display_temp;
-//	TextView display_humid;
+	EditText edit_temp;
+	EditText edit_humid;
 	TextView display_message;
+	
+	String message_temp = null;
+	String message_humid = null;
 
-	/***********************************************************************/
 
 	@SuppressLint("NewApi")
 	@Override
@@ -66,7 +65,10 @@ public class PostActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_post);
 		serviceIntent = new Intent(this, LocationService.class);
-		// statusView = (TextView) findViewById(R.id.status);
+
+		edit_temp = (EditText) findViewById(R.id.editTemperature);
+		edit_humid = (EditText) findViewById(R.id.editHumidity);
+
 	}
 
 	@Override
@@ -104,6 +106,8 @@ public class PostActivity extends Activity {
 
 	public void updateUIDisplay(View v) {
 		Location loc = locationService.getLocation();
+		message_temp = edit_temp.getText().toString();
+		message_humid = edit_humid.getText().toString();
 
 		if (loc == null) {
 			// Do nothing
@@ -112,12 +116,12 @@ public class PostActivity extends Activity {
 			longitude = loc.getLongitude();
 
 			new PostTask().execute();
+			edit_temp.setText(null);
+			edit_humid.setText(null);
 		}
 	}
 
 	private class PostTask extends AsyncTask<String, String, String> {
-
-//		private static final String String = null;
 
 		// @Override
 		@Override
@@ -127,6 +131,8 @@ public class PostActivity extends Activity {
 					.toString(latitude)));
 			nameValuePairs.add(new BasicNameValuePair("c_longitude", Double
 					.toString(longitude)));
+			nameValuePairs.add(new BasicNameValuePair("c_user_temp", message_temp) );
+			nameValuePairs.add(new BasicNameValuePair("c_user_humid", message_humid) );
 
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(
