@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Solazo</string>
     <string name="thank_you">Coming Soon</string>
     <string name="menu_settings">Settings</string>
@@ -15,4 +16,10 @@
     <string name="humidity_hint">humidity</string>
     <string name="title_activity_about">AboutActivity</string>
     <string name="about_author">Louis Gutierrez and Daniel Zhao</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section1">Section 1</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_loader">LoaderActivity</string>
+
 </resources>

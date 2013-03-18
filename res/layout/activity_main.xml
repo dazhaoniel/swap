@@ -14,7 +14,6 @@
         android:layout_marginTop="109dp"
         android:contentDescription="@string/button_post"
         android:onClick="startPostActivity"
-        android:src="@drawable/post_activity"
         android:text="@string/button_post" />
 
     <Button
@@ -27,7 +26,6 @@
         android:layout_marginTop="32dp"
         android:contentDescription="@string/button_guess"
         android:onClick="startGuessActivity"
-        android:src="@drawable/guess_activity"
         android:text="@string/button_guess" />
 
     <TextView
