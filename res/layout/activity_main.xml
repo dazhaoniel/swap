@@ -39,4 +39,15 @@
         android:text="@string/about_author"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <Button
+        android:id="@+id/imageAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/imagePost"
+        android:layout_marginTop="33dp"
+        android:onClick="startAboutActivity"
+        android:text="@string/button_about" />
+
 </RelativeLayout>

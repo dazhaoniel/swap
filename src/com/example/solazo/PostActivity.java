@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -36,6 +39,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@SuppressLint("SimpleDateFormat")
 public class PostActivity extends Activity {
 
 	private JSONArray jArray;
@@ -126,6 +130,10 @@ public class PostActivity extends Activity {
 		// @Override
 		@Override
 		protected String doInBackground(String... params) {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date date = new Date();
+			
+			// Date Format: dateFormat.format(date)
 			ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 			nameValuePairs.add(new BasicNameValuePair("c_latitude", Double
 					.toString(latitude)));
@@ -133,6 +141,7 @@ public class PostActivity extends Activity {
 					.toString(longitude)));
 			nameValuePairs.add(new BasicNameValuePair("c_user_temp", message_temp) );
 			nameValuePairs.add(new BasicNameValuePair("c_user_humid", message_humid) );
+			nameValuePairs.add(new BasicNameValuePair("c_date_time", dateFormat.format(date).toString() ) );
 
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(

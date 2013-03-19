@@ -27,8 +27,10 @@
         </activity>
         <activity android:name="com.example.solazo.PostActivity" />
         <activity android:name="com.example.solazo.GuessActivity" />
+        <activity android:name="com.example.solazo.AboutActivity" />
 
         <service android:name="com.example.solazo.LocationService" />
+
     </application>
 
 </manifest>

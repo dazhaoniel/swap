@@ -23,6 +23,11 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, PostActivity.class);
 		startActivity(intent);
 	}
+	
+	public void startAboutActivity(View view) {
+		Intent intent = new Intent(this, AboutActivity.class);
+		startActivity(intent);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
