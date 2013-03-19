@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -33,6 +34,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -127,13 +129,23 @@ public class PostActivity extends Activity {
 
 	private class PostTask extends AsyncTask<String, String, String> {
 
-		// @Override
 		@Override
 		protected String doInBackground(String... params) {
+			// Get Date Format
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date date = new Date();
 			
-			// Date Format: dateFormat.format(date)
+			// Get Device UUID
+			final TelephonyManager tm = (TelephonyManager) getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
+			final String tmDevice, tmSerial, androidId;
+		    tmDevice = "" + tm.getDeviceId();
+		    tmSerial = "" + tm.getSimSerialNumber();
+		    androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+
+		    UUID deviceUuid = new UUID(androidId.hashCode(), ((long)tmDevice.hashCode() << 32) | tmSerial.hashCode());
+		    String userId = deviceUuid.toString();
+			
+			// Send Values
 			ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 			nameValuePairs.add(new BasicNameValuePair("c_latitude", Double
 					.toString(latitude)));
@@ -142,6 +154,7 @@ public class PostActivity extends Activity {
 			nameValuePairs.add(new BasicNameValuePair("c_user_temp", message_temp) );
 			nameValuePairs.add(new BasicNameValuePair("c_user_humid", message_humid) );
 			nameValuePairs.add(new BasicNameValuePair("c_date_time", dateFormat.format(date).toString() ) );
+			nameValuePairs.add(new BasicNameValuePair("c_user_id", userId) );
 
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(
@@ -196,22 +209,7 @@ public class PostActivity extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 
-			// paring data
-
-			/*******************************************************************
-			 * variables for return values from servers, remember, php script
-			 * can only print the values you need, no warnings, etc
-			 *******************************************************************/
-/*
-			String[] temp = new String[5];
-			String[] humid = new String[5];
-			String[] noaa_station = new String[5];
-			String[] noaa_distance = new String[5];
-			String[] noaa_temp = new String[5];
-			String[] noaa_humid = new String[5];
-*/
 			String postMessage = null;
-			/***********************************************************************/
 
 			try {
 
@@ -220,21 +218,8 @@ public class PostActivity extends Activity {
 
 				for (int i = 0; i < jArray.length(); i++) {
 					json_data = jArray.getJSONObject(i);
-/*					temp[i] = json_data.getString("temp");
-					humid[i] = json_data.getString("humid");
-					noaa_station[i] = json_data.getString("noaa_station");
-					noaa_distance[i] = json_data.getString("noaa_distance");
-					noaa_temp[i] = json_data.getString("noaa_temp");
-					noaa_humid[i] = json_data.getString("noaa_humid");*/
 					postMessage = json_data.getString("test");
 				}
-
-				// Toast.makeText(getBaseContext(), noaa_station[0],
-				// Toast.LENGTH_LONG).show();
-/*				String the_results = "Temperature: " + temp[0]
-						+ " degrees \n Humidity: " + humid[0] + "% \n "
-						+ "Closest Station: " + noaa_station[0] + "\n"
-						+ "Miles from you: " + noaa_distance[0];*/
 
 				display_message = (TextView) findViewById(R.id.thank_you);
 				display_message.setText(postMessage);
