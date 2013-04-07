@@ -60,21 +60,6 @@ public class GuessActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_guess);
 		serviceIntent = new Intent(this, LocationService.class);
-		/*
-		Location loc = locationService.getLocation();
-		while (loc == null) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		latitude = loc.getLatitude();
-		longitude = loc.getLongitude();
-
-		new GuessTask().execute();
-		*/
 	}
 
 	@Override
@@ -189,11 +174,6 @@ public class GuessActivity extends Activity {
 
 			// paring data
 
-			/*******************************************************************
-			 * variables for return values from servers, remember, php script
-			 * can only print the values you need, no warnings, etc
-			 *******************************************************************/
-
 			String[] temp = new String[5];
 			String[] humid = new String[5];
 			String[] noaa_station = new String[5];
@@ -201,7 +181,6 @@ public class GuessActivity extends Activity {
 			String[] noaa_temp = new String[5];
 			String[] noaa_humid = new String[5];
 
-			/***********************************************************************/
 
 			try {
 
@@ -218,11 +197,9 @@ public class GuessActivity extends Activity {
 					noaa_humid[i] = json_data.getString("noaa_humid");
 				}
 
-				// Toast.makeText(getBaseContext(), noaa_station[0],
-				// Toast.LENGTH_LONG).show();
 				String the_results = "Temperature: " + temp[0]
-						+ " degrees \n Humidity: " + humid[0] + "% \n "
-						+ "Closest Station: " + noaa_station[0] + "\n"
+						+ " F \n Humidity: " + humid[0] + "% \n "
+						+ "Closest Station: " + noaa_station[0] + "\n "
 						+ "Miles from you: " + noaa_distance[0];
 
 				display_temp = (TextView) findViewById(R.id.status);

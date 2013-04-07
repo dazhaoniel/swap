@@ -4,23 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/thank_you"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        tools:context=".PostActivity" />
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/thank_you"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:onClick="updateUIDisplay"
-        android:text="@string/submit" />
-
     <EditText
         android:id="@+id/editTemperature"
         android:layout_width="wrap_content"
@@ -42,5 +25,15 @@
         android:ems="10"
         android:hint="@string/humidity_hint"
         android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/button_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editHumidity"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="87dp"
+        android:onClick="updateUIDisplay"
+        android:text="@string/button_submit" />
 
 </RelativeLayout>

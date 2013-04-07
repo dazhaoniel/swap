@@ -11,8 +11,6 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
-//import com.example.solazo.R;
-
 public class LocationService extends Service implements LocationListener {
 
 	private static final String LOGTAG = "LocationService";
@@ -58,10 +56,9 @@ public class LocationService extends Service implements LocationListener {
 	private Location requestUpdatesFromProvider(final String provider) {
 		Location location = null;
 		if (manager.isProviderEnabled(provider)) {
-			manager.requestLocationUpdates(provider, 30000, 0, this);
+			manager.requestLocationUpdates(provider, 60000, 0, this);
 		} else {
 			location = manager.getLastKnownLocation(provider);
-			// location = null;
 		}
 		return location;
 	}

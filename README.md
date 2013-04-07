@@ -11,8 +11,8 @@ In this project we introduce an Android App that works to gather weather data fr
 
 TO DO
 ------
-1. get user id
-2. get time
+1. get user id (DONE)
+2. get time (DONE)
 3. input validation
-4. create post feedback, 1 for thank you and 0 for Oops something went wrong
+4. create post feedback, 1 for thank you and 0 for Oops something went wrong (DONE)
 5. 

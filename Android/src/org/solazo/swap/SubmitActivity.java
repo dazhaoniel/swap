@@ -209,6 +209,7 @@ public class SubmitActivity extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 
+			@SuppressWarnings("unused")
 			String postMessage = null;
 
 			try {
@@ -221,8 +222,9 @@ public class SubmitActivity extends Activity {
 					postMessage = json_data.getString("test");
 				}
 
-				display_message = (TextView) findViewById(R.id.thank_you);
-				display_message.setText(postMessage);
+				Toast.makeText(getBaseContext(),
+						"Thank you, that was super helpful :)", Toast.LENGTH_LONG)
+						.show();
 
 			} catch (JSONException e1) {
 				Toast.makeText(getBaseContext(),

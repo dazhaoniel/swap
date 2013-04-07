@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -14,7 +14,27 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
+
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:textColor">#656875</item>
+    </style>
+
+    <style name="DashboardButton">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:drawablePadding">6dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">#409F89</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="GeneralButton">
+        <item name="android:gravity">center</item>
+        <item name="android:background">#409F89</item>
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 
 </resources>
