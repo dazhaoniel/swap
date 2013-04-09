@@ -121,7 +121,7 @@ public class GuessActivity extends Activity {
 
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(
-					"http://solazo.org/scripts/guess.php");
+					"");
 
 			// URL Encoding the POST Parameters
 			try {

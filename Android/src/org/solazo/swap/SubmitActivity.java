@@ -158,7 +158,7 @@ public class SubmitActivity extends Activity {
 
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(
-					"http://solazo.org/scripts/store_data.php");
+					"");
 
 			// URL Encoding the POST Parameters
 			try {
