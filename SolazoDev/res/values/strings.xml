@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Solazo Dev</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello Solazo</string>
+    <string name="abs_text_guess">GUESS</string>
+    <string name="abs_text_submit">SUBMIT</string>
+    <string name="abs_text_about">ABOUT</string>
+    <string name="submit_hint_temperature">temperature</string>
+    <string name="submit_hint_humidity">humidity</string>
+    <string name="no_internet_message">Sorry, there\'s a problem connecting to the network.</string>
+    <string name="about_app">Solazo is a weather app that helps to approximate the weather. That may seem unnecessary in some cases, and Solazo does not aim to replace your other weather apps. But if your located far away from a weather station, in what we call a \"Weather Station Desert\", then this app could be really useful. Just use your android phone to send us your coordinates and our app will approximate your temperature and humidity for your location. If you\'re interested in helping us collect data, especially if you live in a rural area, then use the submit function to send us your temperature and humidity (in Fahrenheit please). If you\'re interested in helping more, please contact Louis at gutiel@rpi.edu. Thanks!</string>
+    <string name="button_submit">Submit</string>
+    <string name="guess_placeholder_temperature">80&#176; F</string>
+    <string name="guess_placeholder_humidity">70% Humidity</string>
+    <string name="guess_label_closest_station">Closest Station: </string>
+    <string name="guess_label_miles_from_you">Miles From You: </string>
+    <string name="guess_current_location">Albany, NY</string>
+
+</resources>
