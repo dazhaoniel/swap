@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.app.Activity;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -40,17 +40,26 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.message.BasicNameValuePair;
 
-public class GuessActivity extends SherlockFragmentActivity {
+public class GuessActivity extends SherlockFragment {
 
     private Solazo mSolazo;
 
-    private double latitude;
-    private double longitude;
+    private Location mLocation;
 
     private JSONArray jArray;
     private String result = null;
     private InputStream is = null;
     private StringBuilder sb = null;
+
+
+    // Handles to UI widgets
+    private ProgressBar mActivityIndicator;
+
+    private TextView display_temperature;
+    private TextView display_humidity;
+    private TextView display_station;
+    private TextView display_distance;
+    private TextView display_current_location;
 
     private AsyncTask<String, Void, String> mGuessTask;
 
@@ -59,14 +68,42 @@ public class GuessActivity extends SherlockFragmentActivity {
         super.onCreate(savedInstanceState);
 
         mSolazo = Solazo.getInstance();
-        mGuessTask = new GuessTask().execute();
 
-        FragmentManager fm = getSupportFragmentManager();
-
-        if (fm.findFragmentById(android.R.id.content) == null) {
-            GuessFragment guessResults = new GuessFragment();
-            fm.beginTransaction().add(android.R.id.content, guessResults).commit();
+        if ( mSolazo != null ) {
+            mLocation = mSolazo.getLocation();
+            mGuessTask = new GuessTask().execute();
+        } else {
+            try {
+                Thread.sleep(6000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+
+//        FragmentManager fm = getSupportFragmentManager();
+//
+//        if (fm.findFragmentById(android.R.id.content) == null) {
+//            GuessFragment guessResults = new GuessFragment();
+//            fm.beginTransaction().add(android.R.id.content, guessResults).commit();
+//        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.activity_guess, container, false);
+
+        // Get handles to the UI view objects
+        mActivityIndicator = (ProgressBar) view.findViewById(R.id.progressBar);
+
+        display_temperature = (TextView) view.findViewById(R.id.guess_temperature);
+        display_humidity = (TextView) view.findViewById(R.id.guess_humidity);
+        display_station = (TextView) view.findViewById(R.id.guess_station);
+        display_distance = (TextView) view.findViewById(R.id.guess_distance);
+        display_current_location = (TextView) view.findViewById(R.id.guess_current_location);
+
+        return view;
     }
 
     @Override
@@ -94,14 +131,14 @@ public class GuessActivity extends SherlockFragmentActivity {
 
         @Override
         protected String doInBackground(String... params) {
-//            Location loc = mSolazo.getLocation();
+            Location loc = mLocation;
 
-            String lat = "40.778982";//loc.getLatitude();
-            String longt = "-74.128876";//loc.getLongitude();
+            Double lat = loc.getLatitude(); //"40.778982";//
+            Double longt = loc.getLongitude(); //"-74.128876";//
 
             ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-            nameValuePairs.add(new BasicNameValuePair("c_latitude", lat));
-            nameValuePairs.add(new BasicNameValuePair("c_longitude", longt));
+            nameValuePairs.add(new BasicNameValuePair("c_latitude", lat.toString()));
+            nameValuePairs.add(new BasicNameValuePair("c_longitude", longt.toString()));
 
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httppost = new HttpPost(
@@ -156,8 +193,11 @@ public class GuessActivity extends SherlockFragmentActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            // paring data
 
+            // Turn off the progress bar
+            mActivityIndicator.setVisibility(View.GONE);
+
+            // paring data
             String[] temp = new String[5];
             String[] humid = new String[5];
             String[] noaa_station = new String[5];
@@ -181,57 +221,26 @@ public class GuessActivity extends SherlockFragmentActivity {
                     noaa_humid[i] = json_data.getString("noaa_humid");
                 }
 
-//                String the_results = "Temperature: " + temp[0]
-//                        + " F \n Humidity: " + humid[0] + "% \n "
-//                        + "Closest Station: " + noaa_station[0] + "\n "
-//                        + "Miles from you: " + noaa_distance[0];
+                String the_results = "Temperature: " + temp[0]
+                        + " F \n Humidity: " + humid[0] + "% \n "
+                        + "Closest Station: " + noaa_station[0] + "\n "
+                        + "Miles from you: " + noaa_distance[0];
 
-//                display_temp = (TextView) findViewById(R.id.status);
-//                display_temperature.setText(temp[0]);
-//                display_humidity.setText(humid[0]);
-//                display_station.setText(noaa_station[0]);
-//                display_distance.setText(noaa_distance[0]);
+//                Toast.makeText( getActivity(), the_results, Toast.LENGTH_LONG).show();
+
+                display_temperature.setText(temp[0] + "F");
+                display_humidity.setText(humid[0] + "% Humidity");
+                display_station.setText("Closest Station: " + noaa_station[0]);
+                display_distance.setText("Miles from you: " + noaa_distance[0]);
 //                display_current_location.setText();
 
             } catch (JSONException e1) {
-//                Toast.makeText(GuessActivity.class, "Oops...something went wrong :(", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Oops...something went wrong :(", Toast.LENGTH_LONG).show();
             } catch (ParseException e1) {
                 e1.printStackTrace();
 
             }
 
-        }
-    }
-
-    /*
-     * Guess Fragment displays temperature and humidity updates
-     */
-    public static class GuessFragment extends SherlockFragment {
-
-        public TextView display_temperature;
-        public TextView display_humidity;
-        public TextView display_station;
-        public TextView display_distance;
-        public TextView display_current_location;
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-
-            View view = inflater.inflate(R.layout.activity_guess, container, false);
-
-            display_temperature = (TextView) view.findViewById(R.id.guess_temperature);
-            display_humidity = (TextView) view.findViewById(R.id.guess_humidity);
-            display_station = (TextView) view.findViewById(R.id.guess_station);
-            display_distance = (TextView) view.findViewById(R.id.guess_distance);
-            display_current_location = (TextView) view.findViewById(R.id.guess_current_location);
-
-            return view;
         }
     }
 }

@@ -6,7 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".GuessActivity" >
+    tools:context=".GuessActivity"
+    android:background="@color/background_holo_dark">
 
     <TextView
             android:layout_width="wrap_content"
@@ -15,8 +16,8 @@
             android:text="@string/guess_placeholder_temperature"
             android:id="@+id/guess_temperature"
             android:textSize="@dimen/h1"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -24,9 +25,9 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/guess_placeholder_humidity"
             android:id="@+id/guess_humidity"
+            android:textSize="@dimen/h2"
             android:layout_below="@+id/guess_temperature"
-            android:layout_alignRight="@+id/guess_temperature"
-            android:textSize="@dimen/h2"/>
+            android:layout_centerHorizontal="true"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -36,7 +37,7 @@
             android:id="@+id/guess_station"
             android:textSize="@dimen/h2"
             android:layout_below="@+id/guess_humidity"
-            android:layout_alignRight="@+id/guess_humidity"/>
+            android:layout_centerHorizontal="true"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -46,7 +47,7 @@
             android:id="@+id/guess_distance"
             android:textSize="@dimen/h2"
             android:layout_below="@+id/guess_station"
-            android:layout_alignRight="@+id/guess_humidity"/>
+            android:layout_centerHorizontal="true"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -55,4 +56,26 @@
             android:id="@+id/guess_current_location"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"/>
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_outlook"
+            android:src="@drawable/ic_sunny"
+            android:layout_marginBottom="32dp"
+            android:layout_above="@+id/guess_temperature"
+            android:layout_centerHorizontal="true"/>
+
+    <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_alignTop="@+id/image_outlook"
+            android:layout_alignBottom="@+id/guess_distance"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:alpha="0.9"
+            android:background="@color/background_holo_dark"/>
+
 </RelativeLayout>

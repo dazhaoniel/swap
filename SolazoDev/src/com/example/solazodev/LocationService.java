@@ -105,7 +105,7 @@ public class LocationService extends Service implements LocationListener {
 				String.format(currentLocation.getLatitude() + ", "
 						+ currentLocation.getLongitude()), Toast.LENGTH_SHORT)
 				.show();
-//        mSolazo.setCurrentLocation(location);
+//        solazo.setCurrentLocation(location);
 	}
 
 	@Override
@@ -149,6 +149,10 @@ public class LocationService extends Service implements LocationListener {
             Log.d(LOGTAG, "No location provider has acceptable data");
         }
         return false;
+    }
+
+    public Location getCurrentLocation() {
+        return this.currentLocation;
     }
 
     protected Location getBetterLocation(Location newLocation,

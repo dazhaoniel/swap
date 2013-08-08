@@ -35,6 +35,8 @@
         <activity android:name=".AboutFragment" />
         <activity android:name=".TabActivity" />
         <activity android:name=".AbstractFragmentActivity"/>
+        <activity android:name=".LocationActivity"/>
+        <activity android:name=".utils.LocationUtils"/>
 
     </application>
 

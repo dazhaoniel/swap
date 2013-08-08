@@ -7,14 +7,16 @@ import android.location.Location;
  */
 public class Solazo {
 
-    private static final Solazo INSTANCE = new Solazo();
+    private static Solazo INSTANCE = new Solazo();
+
     private Location mCurrentLocation;
-    private LocationService mLocationService;
-    public final int LOCATION_SERVICE_TIME_OUT_COUNT = 6;
+    private String mAddress;
+//    private LocationActivity mLocationActivity;
+//    public final int LOCATION_SERVICE_TIME_OUT_COUNT = 6;
 
 
     private Solazo() {
-        mLocationService = new LocationService();
+//        mLocationActivity = new LocationActivity();
     }
 
     public static synchronized Solazo getInstance() {
@@ -25,17 +27,23 @@ public class Solazo {
         return mCurrentLocation;
     }
 
+    public String getAddress(){
+        return mAddress;
+    }
+
     public void setCurrentLocation(Location loc) {
         this.mCurrentLocation = loc;
     }
 
-    public void startLocationUpdates() {
-        mLocationService.startTracking();
+    public void setAddress( String address ) {
+        this.mAddress = address;
     }
-
-    public void stopLocationUpdates() {
-        mLocationService.stopTracking();
-    }
-
-
+//
+//    public void startLocationUpdates() {
+//        mLocationService.startTracking();
+//    }
+//
+//    public void stopLocationUpdates() {
+//        mLocationService.stopTracking();
+//    }
 }

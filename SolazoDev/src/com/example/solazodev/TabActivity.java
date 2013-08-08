@@ -1,6 +1,7 @@
 package com.example.solazodev;
 
 import java.util.HashMap;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.TabHost;
 
-public class TabActivity extends AbstractFragmentActivity {
+public class TabActivity extends SherlockFragmentActivity {
     TabHost mTabHost;
     TabManager mTabManager;
     // TODO on tab reselected
@@ -21,11 +22,12 @@ public class TabActivity extends AbstractFragmentActivity {
         setContentView(R.layout.activity_tab);
         mTabHost = (TabHost)findViewById(android.R.id.tabhost);
         mTabHost.setup();
+//        mTabHost.setBackgroundColor(R.color.transparent);
 
         mTabManager = new TabManager(this, mTabHost, R.id.realtabcontent);
 
         mTabManager.addTab(mTabHost.newTabSpec("guess").setIndicator(getString(R.string.abs_text_guess)),
-                GuessActivity.GuessFragment.class, null);
+                GuessActivity.class, null);
         mTabManager.addTab(mTabHost.newTabSpec("submit").setIndicator(getString(R.string.abs_text_submit)),
                 SubmitActivity.SubmitFragment.class, null);
         mTabManager.addTab(mTabHost.newTabSpec("about").setIndicator(getString(R.string.abs_text_about)),

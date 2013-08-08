@@ -8,10 +8,9 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.location.Location;
 
-/**
- * Created by danielzhao on 7/10/13.
- */
+
 public abstract class AbstractFragmentActivity extends SherlockFragmentActivity {
 
     protected Solazo mSolazo;
@@ -56,6 +55,27 @@ public abstract class AbstractFragmentActivity extends SherlockFragmentActivity 
 
         // Unbind from the service
         unbindService(serviceConnection);
+    }
+
+    public Boolean refreshCurrentLocation(Solazo solazo) {
+        if( solazo.getLocation() != null || locationService.refreshCurrentLocation(solazo)) {
+            return true;
+        } else {
+            int count = 0;
+
+            while ( solazo.getLocation() == null && count < solazo.LOCATION_SERVICE_TIME_OUT_COUNT ) {
+                try {
+                    wait(10000);
+                } catch (Exception ignored) {}
+
+                count++;
+    //            return true;
+            }
+
+            if ( solazo.getLocation() != null )
+                return true;
+            return false;
+        }
     }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
