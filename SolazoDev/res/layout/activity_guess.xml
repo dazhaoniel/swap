@@ -54,8 +54,9 @@
             android:layout_height="wrap_content"
             android:text="@string/guess_current_location"
             android:id="@+id/guess_current_location"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"/>
+            android:layout_alignRight="@+id/progressBar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"/>
 
     <ImageView
             android:layout_width="wrap_content"
@@ -76,6 +77,16 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentLeft="true"
             android:alpha="0.9"
-            android:background="@color/background_holo_dark"/>
+            android:background="@color/background_holo_dark"
+            android:visibility="invisible"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/guess_last_update"
+            android:id="@+id/guess_last_update"
+            android:layout_above="@+id/guess_current_location"
+            android:layout_alignLeft="@+id/guess_current_location"
+            android:layout_alignRight="@+id/guess_current_location"/>
 
 </RelativeLayout>

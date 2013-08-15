@@ -22,12 +22,11 @@ public class TabActivity extends SherlockFragmentActivity {
         setContentView(R.layout.activity_tab);
         mTabHost = (TabHost)findViewById(android.R.id.tabhost);
         mTabHost.setup();
-//        mTabHost.setBackgroundColor(R.color.transparent);
 
         mTabManager = new TabManager(this, mTabHost, R.id.realtabcontent);
 
         mTabManager.addTab(mTabHost.newTabSpec("guess").setIndicator(getString(R.string.abs_text_guess)),
-                GuessActivity.class, null);
+                GuessActivity.GuessFragment.class, null);
         mTabManager.addTab(mTabHost.newTabSpec("submit").setIndicator(getString(R.string.abs_text_submit)),
                 SubmitActivity.SubmitFragment.class, null);
         mTabManager.addTab(mTabHost.newTabSpec("about").setIndicator(getString(R.string.abs_text_about)),

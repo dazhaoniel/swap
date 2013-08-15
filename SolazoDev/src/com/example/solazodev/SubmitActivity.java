@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 public class SubmitActivity extends SherlockFragmentActivity {
 
+    private static final String LOGTAG = "com.example.solazodev.SubmitActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

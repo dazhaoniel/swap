@@ -1,9 +1,10 @@
 package com.example.solazodev;
 
+//import android.location.Address;
 import android.location.Location;
 
 /**
- * Created by danielzhao on 7/10/13.
+ * Created by Daniel Zhao on 7/10/13.
  */
 public class Solazo {
 
@@ -11,12 +12,9 @@ public class Solazo {
 
     private Location mCurrentLocation;
     private String mAddress;
-//    private LocationActivity mLocationActivity;
-//    public final int LOCATION_SERVICE_TIME_OUT_COUNT = 6;
 
 
     private Solazo() {
-//        mLocationActivity = new LocationActivity();
     }
 
     public static synchronized Solazo getInstance() {
@@ -38,12 +36,4 @@ public class Solazo {
     public void setAddress( String address ) {
         this.mAddress = address;
     }
-//
-//    public void startLocationUpdates() {
-//        mLocationService.startTracking();
-//    }
-//
-//    public void stopLocationUpdates() {
-//        mLocationService.stopTracking();
-//    }
 }

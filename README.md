@@ -11,8 +11,12 @@ In this project we introduce an Android App that works to gather weather data fr
 
 TO DO
 ------
-1. get user id (DONE)
-2. get time (DONE)
-3. input validation
-4. create post feedback, 1 for thank you and 0 for Oops something went wrong (DONE)
-5. 
+1. Settings on actionbar
+2. Rewrite about solazo
+3. Monetize
+4. Add address: City, State 
+5. Add outlook (server side)
+6. Add outlook drawables
+7. write acknowledgement
+8. 
+

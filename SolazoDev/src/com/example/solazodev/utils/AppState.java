@@ -11,7 +11,7 @@ public class AppState {
     private static AppState instance = new AppState();
     static Context context;
     ConnectivityManager connectivityManager;
-//    NetworkInfo wifiInfo, mobileInfo;
+    NetworkInfo wifiInfo, mobileInfo;
     boolean connected = false;
 
     public static AppState getInstance(Context ctx) {

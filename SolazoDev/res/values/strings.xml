@@ -7,7 +7,7 @@
     <string name="approximating_weather">approximating your weather</string>
 
     <!-- Tab Activity -->
-    <string name="abs_text_guess">GUESS</string>
+    <string name="abs_text_guess">NOW</string>
     <string name="abs_text_submit">SUBMIT</string>
     <string name="abs_text_about">ABOUT</string>
 
@@ -26,10 +26,13 @@
     <string name="guess_placeholder_humidity">Humidity</string>
     <string name="guess_label_closest_station">Closest Station</string>
     <string name="guess_label_miles_from_you">Miles From You</string>
-    <string name="guess_current_location">Albany, NY</string>
+    <string name="guess_current_location">--</string>
+    <string name="guess_last_update">--</string>
 
 
     <string name="latitude_longitude">%1$.8f, %2$.8f</string>
+
+    <string name="address_output_string">%1$s %2$s %3$s %4$s</string>
 
     <string name="connection_error_code">Connection failure error code: %1$d</string>
     <string name="connection_error_disabled">Google Play services is disabled</string>

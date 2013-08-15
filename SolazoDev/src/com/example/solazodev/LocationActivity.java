@@ -156,7 +156,7 @@ public class LocationActivity extends FragmentActivity implements
         switch (requestCode) {
 
             // If the request code matches the code sent in onConnectionFailed
-            case LocationUtils.CONNECTION_FAILURE_RESOLUTION_REQUEST :
+            case LocationUtils.CONNECTION_FAILURE_RESOLUTION_REQUEST:
 
                 switch (resultCode) {
                     // If Google Play services resolved the problem
@@ -222,9 +222,6 @@ public class LocationActivity extends FragmentActivity implements
 
             // Get the current location
             Location currentLocation = mLocationClient.getLastLocation();
-
-            // Display the current location in the UI
-//            mLatLng.setText(LocationUtils.getLatLng(this, currentLocation));
         }
     }
 
@@ -352,7 +349,7 @@ public class LocationActivity extends FragmentActivity implements
      * An AsyncTask that calls getFromLocation() in the background.
      * The class uses the following generic types:
      * Location - A {@link android.location.Location} object containing the current location,
-     *            passed as the input parameter to doInBackground()
+     * passed as the input parameter to doInBackground()
      * Void     - indicates that progress units are not used by this subclass
      * String   - An address passed to onPostExecute()
      */
@@ -436,7 +433,23 @@ public class LocationActivity extends FragmentActivity implements
                 Address address = addresses.get(0);
 
                 // Format the first line of address
-                mAddress = address.toString();
+                String addressText = getString(R.string.address_output_string,
+
+                        // If there's a street address, add it
+                        address.getMaxAddressLineIndex() > 0 ?
+                                address.getAddressLine(0) : "",
+
+                        // Locality is usually a city
+                        address.getLocality(),
+
+                        // The State name of the address
+                        address.getAdminArea(),
+
+                        // The country of the address
+                        address.getCountryName()
+                );
+
+                mAddress = addressText;
 
                 // Return the text
                 return mAddress;
@@ -456,7 +469,6 @@ public class LocationActivity extends FragmentActivity implements
             // Set the address in the UI
             mAddress = address;
             mSolazo.setAddress(mAddress);
-//            Toast.makeText(LocationActivity.this, mSolazo.getAddress(), Toast.LENGTH_LONG).show();
 
             Intent intent = new Intent(LocationActivity.this, TabActivity.class);
             startActivity(intent);
