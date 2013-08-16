@@ -14,7 +14,7 @@ TO DO
 1. Settings on actionbar
 2. Rewrite about solazo
 3. Monetize
-4. Add address: City, State 
+4. Add address: City, State (DONE)
 5. Add outlook (server side)
 6. Add outlook drawables
 7. write acknowledgement
