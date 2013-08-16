@@ -1,11 +1,11 @@
-package com.example.solazodev.utils;
+package org.solazo.swap.utils;
 
 import com.google.android.gms.common.ConnectionResult;
 
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.example.solazodev.R;
+import org.solazo.swap.R;
 
 /**
  * Map error codes to error messages.

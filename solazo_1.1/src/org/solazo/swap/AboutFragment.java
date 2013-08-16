@@ -1,4 +1,4 @@
-package com.example.solazodev;
+package org.solazo.swap;
 
 import com.actionbarsherlock.app.SherlockFragment;
 

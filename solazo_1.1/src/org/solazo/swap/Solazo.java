@@ -1,4 +1,4 @@
-package com.example.solazodev;
+package org.solazo.swap;
 
 //import android.location.Address;
 import android.location.Location;

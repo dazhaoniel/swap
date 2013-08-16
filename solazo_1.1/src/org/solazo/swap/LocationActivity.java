@@ -1,4 +1,4 @@
-package com.example.solazodev;
+package org.solazo.swap;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
@@ -23,15 +23,13 @@ import android.content.SharedPreferences;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import com.example.solazodev.utils.LocationUtils;
+import org.solazo.swap.utils.LocationUtils;
 
 
 public class LocationActivity extends FragmentActivity implements

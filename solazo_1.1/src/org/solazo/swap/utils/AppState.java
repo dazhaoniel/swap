@@ -1,4 +1,4 @@
-package com.example.solazodev.utils;
+package org.solazo.swap.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

@@ -1,4 +1,4 @@
-package com.example.solazodev;
+package org.solazo.swap;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 public class SubmitActivity extends SherlockFragmentActivity {
 
-    private static final String LOGTAG = "com.example.solazodev.SubmitActivity";
+    private static final String LOGTAG = "org.solazo.swap.SubmitActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

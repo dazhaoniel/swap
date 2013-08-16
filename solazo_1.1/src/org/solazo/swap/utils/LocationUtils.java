@@ -1,9 +1,9 @@
-package com.example.solazodev.utils;
+package org.solazo.swap.utils;
 
 import android.content.Context;
 import android.location.Location;
 
-import com.example.solazodev.R;
+import org.solazo.swap.R;
 
 /**
  * Defines app-wide constants and utilities
@@ -11,15 +11,15 @@ import com.example.solazodev.R;
 public final class LocationUtils {
 
     // Debugging tag for the application
-    public static final String APPTAG = "SolazoDev";
+    public static final String APPTAG = "Solazo";
 
     // Name of shared preferences repository that stores persistent state
     public static final String SHARED_PREFERENCES =
-            "com.example.solazodev.SHARED_PREFERENCES";
+            "org.solazo.swap.SHARED_PREFERENCES";
 
     // Key for storing the "updates requested" flag in shared preferences
     public static final String KEY_UPDATES_REQUESTED =
-            "com.example.solazodev.KEY_UPDATES_REQUESTED";
+            "org.solazo.swap.KEY_UPDATES_REQUESTED";
 
     /*
      * Define a request code to send to Google Play services

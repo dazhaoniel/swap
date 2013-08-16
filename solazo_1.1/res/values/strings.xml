@@ -26,8 +26,8 @@
     <string name="guess_placeholder_humidity">Humidity</string>
     <string name="guess_label_closest_station">Closest Station</string>
     <string name="guess_label_miles_from_you">Miles From You</string>
-    <string name="guess_current_location">--</string>
-    <string name="guess_last_update">--</string>
+    <string name="guess_current_location">Unavailable</string>
+    <string name="guess_last_update">Unavailable</string>
 
 
     <string name="latitude_longitude">%1$.8f, %2$.8f</string>

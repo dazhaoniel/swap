@@ -1,6 +1,6 @@
-package com.example.solazodev;
+package org.solazo.swap;
 
-import com.example.solazodev.utils.AppState;
+import corg.solazo.swap.utils.AppState;
 
 import android.os.Bundle;
 import android.app.Activity;

@@ -1,8 +1,8 @@
-package com.example.solazodev;
+package org.solazo.swap;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.example.solazodev.utils.GatewayConnectionUtils;
+import org.solazo.swap.utils.GatewayConnectionUtils;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -42,7 +43,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 public class GuessActivity extends SherlockFragmentActivity {
 
-    private static final String LOGTAG = "com.example.solazodev.GuessActivity";
+    private static final String LOGTAG = "org.solazo.swap.GuessActivity";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,21 +62,6 @@ public class GuessActivity extends SherlockFragmentActivity {
         super.onSaveInstanceState(outState);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
     public static class GuessFragment extends SherlockFragment {
         private Solazo mSolazo;
 
@@ -86,6 +72,8 @@ public class GuessActivity extends SherlockFragmentActivity {
         // Handles to UI widgets
         private ProgressBar mActivityIndicator;
 
+        private RelativeLayout display_guess_content;
+
         private TextView display_temperature;
         private TextView display_humidity;
         private TextView display_station;
@@ -95,9 +83,37 @@ public class GuessActivity extends SherlockFragmentActivity {
         private ImageView display_outlook;
 
         @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+
+            View view = inflater.inflate(R.layout.activity_guess, container, false);
+
+            // Get handles to the UI view objects
+            mActivityIndicator = (ProgressBar) view.findViewById(R.id.progressBar);
+
+            display_guess_content = (RelativeLayout) view.findViewById(R.id.guess_content);
+            display_temperature = (TextView) view.findViewById(R.id.guess_temperature);
+            display_humidity = (TextView) view.findViewById(R.id.guess_humidity);
+            display_station = (TextView) view.findViewById(R.id.guess_station);
+            display_distance = (TextView) view.findViewById(R.id.guess_distance);
+
+            display_outlook = (ImageView) view.findViewById(R.id.image_outlook);
+
+            display_current_location = (TextView) view.findViewById(R.id.guess_current_location);
+            display_last_update = (TextView) view.findViewById(R.id.guess_last_update);
+
+            return view;
+        }
+
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
             mSolazo = Solazo.getInstance();
+
+            display_guess_content.setVisibility(View.INVISIBLE);
+            mActivityIndicator.setVisibility(View.VISIBLE);
+
+            setHasOptionsMenu(true);
 
             if (mSolazo != null) {
                 mLocation = mSolazo.getLocation();
@@ -109,32 +125,6 @@ public class GuessActivity extends SherlockFragmentActivity {
                     e.printStackTrace();
                 }
             }
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-
-            View view = inflater.inflate(R.layout.activity_guess, container, false);
-
-            // Get handles to the UI view objects
-            mActivityIndicator = (ProgressBar) view.findViewById(R.id.progressBar);
-
-            display_temperature = (TextView) view.findViewById(R.id.guess_temperature);
-            display_humidity = (TextView) view.findViewById(R.id.guess_humidity);
-            display_station = (TextView) view.findViewById(R.id.guess_station);
-            display_distance = (TextView) view.findViewById(R.id.guess_distance);
-            display_current_location = (TextView) view.findViewById(R.id.guess_current_location);
-            display_outlook = (ImageView) view.findViewById(R.id.image_outlook);
-            display_last_update = (TextView) view.findViewById(R.id.guess_last_update);
-
-            return view;
-        }
-
-        @Override
-        public void onActivityCreated(Bundle savedInstanceState) {
-            super.onActivityCreated(savedInstanceState);
-            mActivityIndicator.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -159,9 +149,6 @@ public class GuessActivity extends SherlockFragmentActivity {
             private InputStream inputStream;
             private StringBuilder stringBuilder;
             private BufferedReader bufferedReader;
-
-            @Override
-            protected void onPreExecute() {}
 
             @Override
             protected String doInBackground(String... params) {
@@ -213,6 +200,7 @@ public class GuessActivity extends SherlockFragmentActivity {
 
                 mGuessTask = null;
 
+                display_guess_content.setVisibility(View.VISIBLE);
                 // Turn off the progress bar
                 mActivityIndicator.setVisibility(View.GONE);
 
