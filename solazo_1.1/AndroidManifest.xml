@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.solazo.swap"
-    android:versionCode="2"
-    android:versionName="1.1" >
+    package="org.solazodev"
+    android:versionCode="3"
+    android:versionName="1.0.x" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -17,9 +17,9 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/Theme.Solazo" >
         <activity
-            android:name=".MainActivity"
+            android:name="org.solazodev.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,12 +28,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".GuessActivity" />
-        <activity android:name=".SubmitActivity" />
-        <activity android:name=".AboutFragment" />
-        <activity android:name=".TabActivity" />
-        <activity android:name=".LocationActivity"/>
-        <activity android:name=".utils.LocationUtils"/>
+        <activity android:name="org.solazodev.GuessActivity" />
+        <activity android:name="org.solazodev.SubmitActivity" />
+        <activity android:name="org.solazodev.AboutFragment" />
+        <activity android:name="org.solazodev.TabActivity" />
+        <activity android:name="org.solazodev.LocationActivity"/>
+        <activity android:name="org.solazodev.utils.LocationUtils"/>
 
     </application>
 

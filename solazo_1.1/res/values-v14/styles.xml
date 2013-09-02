@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Solazo" parent="@style/Theme.Sherlock">
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.</item>
+    </style>
+
+    <style name="ActionBar.Solid." parent="@style/Widget.Sherlock.ActionBar.Solid">
+        <item name="android:background">@drawable/ab_solid_</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.</item>
+    </style>
+
+    <style name="ActionBar.Transparent." parent="@style/Widget.Sherlock.ActionBar">
+        <item name="android:background">@drawable/ab_transparent_</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.</item>
+    </style>
+
+</resources>

@@ -15,7 +15,8 @@
             android:id="@+id/imageLandingSun"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_landing_page"/>
+            android:src="@drawable/ic_landing_page"
+            android:alpha="0.6"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -25,5 +26,6 @@
             android:id="@+id/textView"
             android:layout_marginTop="11dp"
             android:layout_below="@+id/imageLandingSun"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:alpha="0.6"/>
 </RelativeLayout>

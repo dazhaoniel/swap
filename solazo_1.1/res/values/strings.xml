@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Solazo Weather</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Solazo Dev</string>
     <!-- Main Activity -->
     <string name="approximating_weather">approximating your weather</string>
 
     <!-- Tab Activity -->
-    <string name="abs_text_guess">NOW</string>
-    <string name="abs_text_submit">SUBMIT</string>
-    <string name="abs_text_about">ABOUT</string>
+    <string name="abs_text_guess">Now</string>
+    <string name="abs_text_submit">Submit</string>
+    <string name="abs_text_about">About</string>
 
     <!-- No Internet Error Message -->
     <string name="no_internet_message">Sorry, there\'s a problem connecting to the network.</string>
@@ -20,15 +19,18 @@
     <string name="button_submit">Submit</string>
     <string name="submit_hint_temperature">temperature</string>
     <string name="submit_hint_humidity">humidity</string>
+    <string name="submit_thank_you">Thank you, that was super helpful :)</string>
 
     <!-- Guess Activity -->
-    <string name="guess_placeholder_temperature">Temperature</string>
-    <string name="guess_placeholder_humidity">Humidity</string>
-    <string name="guess_label_closest_station">Closest Station</string>
-    <string name="guess_label_miles_from_you">Miles From You</string>
-    <string name="guess_current_location">Unavailable</string>
-    <string name="guess_last_update">Unavailable</string>
+    <string name="guess_placeholder_temperature">%s</string>
+    <string name="guess_placeholder_humidity">Humidity: %s</string>
+    <string name="guess_label_closest_station">Closest Station: %s</string>
+    <string name="guess_label_miles_from_you">Miles From You: %s</string>
+    <string name="guess_current_location">Location: %s</string>
+    <string name="guess_last_update">Last Update: %s</string>
 
+    <!-- Http Connection Error Message -->
+    <string name="oops">Oops...something went wrong :(</string>
 
     <string name="latitude_longitude">%1$.8f, %2$.8f</string>
 

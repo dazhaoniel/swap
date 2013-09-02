@@ -14,16 +14,14 @@
             android:layout_height="fill_parent"
             android:id="@+id/guess_content"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            >
+            android:layout_alignParentLeft="true">
+
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/image_outlook"
-                android:src="@drawable/ic_sunny"
-                android:layout_marginBottom="32dp"
-                android:layout_above="@+id/guess_temperature"
-                android:layout_centerHorizontal="true"/>
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -32,8 +30,11 @@
                 android:text="@string/guess_placeholder_temperature"
                 android:id="@+id/guess_temperature"
                 android:textSize="@dimen/h1"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
+                android:layout_marginBottom="32dp"
+                android:layout_alignBottom="@+id/image_outlook"
+                android:layout_alignParentRight="true"
+                android:alpha="0.6"
+                android:textStyle="bold"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -42,8 +43,9 @@
                 android:text="@string/guess_placeholder_humidity"
                 android:id="@+id/guess_humidity"
                 android:textSize="@dimen/h2"
-                android:layout_below="@+id/guess_temperature"
-                android:layout_centerHorizontal="true"/>
+                android:alpha="0.6"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -52,8 +54,9 @@
                 android:text="@string/guess_label_closest_station"
                 android:id="@+id/guess_station"
                 android:textSize="@dimen/h2"
+                android:alpha="0.6"
                 android:layout_below="@+id/guess_humidity"
-                android:layout_centerHorizontal="true"/>
+                android:layout_alignParentLeft="true"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -62,8 +65,9 @@
                 android:text="@string/guess_label_miles_from_you"
                 android:id="@+id/guess_distance"
                 android:textSize="@dimen/h2"
+                android:alpha="0.6"
                 android:layout_below="@+id/guess_station"
-                android:layout_centerHorizontal="true"/>
+                android:layout_alignParentLeft="true"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -71,17 +75,27 @@
                 android:text="@string/guess_last_update"
                 android:id="@+id/guess_last_update"
                 android:layout_above="@+id/guess_current_location"
-                android:layout_alignLeft="@+id/guess_current_location"
-                android:layout_alignParentRight="true"/>
+                android:layout_centerHorizontal="true"
+                android:alpha="0.7"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/guess_current_location"
                 android:id="@+id/guess_current_location"
-                android:layout_alignParentLeft="true"
+                android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"/>
+                android:alpha="0.7"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/guess_outlook"
+                android:textSize="@dimen/h2"
+                android:alpha="0.6"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/image_outlook"/>
 
     </RelativeLayout>
 
