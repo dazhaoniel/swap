@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Solazo Dev</string>
+    <string name="app_name">Solazo Weather</string>
     <!-- Main Activity -->
     <string name="approximating_weather">approximating your weather</string>
 

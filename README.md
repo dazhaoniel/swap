@@ -3,20 +3,20 @@ Solazo Weather App (SWAp)
 
 [Website](http://solazo.org)
 
-A Weather API is a feed that allows developers to interface with weather data gathered by weather stations. Tapping into Weather APIs is handy to post temperatures or forecasts on your blog, but weather data also has the potential to serve as the basis for applications and hardware. The problem is, despite the numerous Weather APIs, weather stations – which are responsible for physically gathering the data – are few in number, and can often be located relatively far from the exact location the request is coming from. In the case of rural areas, this can be as far as the next major town or city.
+Solazo is a weather app that helps to give you an approximation of current weather condition in your area. Solazo is not a stand-alone weather app, but instead Solazo is a resource that can help introduce an additional level of precision in your weather request. Weather apps rely on weather stations to gauge current conditions. If you are located far from a weather station, or at a much higher elevation, you can often get unreliable or inconsistent results. Solazo uses a mashup of various weather APIs, historical data, Crowdsourced data and a little math to give you an approximation of conditions in your exact geolocation. 
 
-In this project we introduce an Android App that works to gather weather data from various Weather APIs, and – based upon calculations and randomly sampled historical data – produce an "approximation" of the current conditions for your exact geolocation. The intent is to highlight the discrepancies which may exist between the queried data and the actual conditions relative to the proximity of weather stations. Moreover, the resulting approximation – although not exact – provides a favorable option for users located in rural areas or locations situated outside the radius of weather stations.
+Solazo is a big believer in Participatory Sensing and Citizen Science. We rely heavily on the data of your personal weather stations. So please submit whatever information you may have, where ever you may be, when ever you can. 
  
 
 
 TO DO
 ------
 1. Settings on actionbar
-2. Rewrite about solazo
-3. Monetize
-4. Add address: City, State (DONE)
-5. Add outlook (server side)
-6. Add outlook drawables
-7. write acknowledgement
-8. 
+2. Rewrite about solazo (DONE)
+3. Add address: City, State (DONE)
+4. Add outlook (server side) (DONE)
+5. Add outlook drawables (DONE)
+6. write acknowledgement
+7. add ratings, thumb up/ thumb down
+8. ...
 
